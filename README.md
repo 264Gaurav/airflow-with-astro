@@ -35,6 +35,8 @@ Note: If you already have either of the above ports allocated, you can either [s
 
 This project is an ETL (Extract, Transform, Load) pipeline built using Apache Airflow. The pipeline fetches weather data for a specific location (London) from the Open-Meteo API and processes it for further use.
 
+![ETL Weather Pipeline](images/dag.png)
+
 ## Features
 
 - **Extract**: Fetch weather data from the Open-Meteo API.
