@@ -31,7 +31,61 @@ When all five containers are ready the command will open the browser to the Airf
 
 Note: If you already have either of the above ports allocated, you can either [stop your existing Docker containers or change the port](https://www.astronomer.io/docs/astro/cli/troubleshoot-locally#ports-are-not-available-for-my-local-airflow-webserver).
 
+# ETL Weather Pipeline
+
+This project is an ETL (Extract, Transform, Load) pipeline built using Apache Airflow. The pipeline fetches weather data for a specific location (London) from the Open-Meteo API and processes it for further use.
+
+## Features
+
+- **Extract**: Fetch weather data from the Open-Meteo API.
+- **Transform**: Process and clean the weather data.
+- **Load**: Store the processed data into a PostgreSQL database.
+
+## Prerequisites
+
+- Python 3.7+
+- Apache Airflow
+- PostgreSQL database
+- Open-Meteo API access
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone <repository-url>
+   cd etlWeather
+   ```
+
+2. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Set up Airflow:
+
+```bash
+export AIRFLOW_HOME=~/airflow
+airflow db init
+airflow users create \
+    --username admin \
+    --firstname Admin \
+    --lastname User \
+    --role Admin \
+    --email admin@example.com
+```
+
+4. Configure Airflow connections:
+
+   1. Add a connection for PostgreSQL (postgres_default).
+   2. Add a connection for the Open-Meteo API (open_meteo_api).
+
+## Configuration
+
+    1. Update the LATITUDE and LONGITUDE variables in etlWeather.py to specify the desired location.
+    2. Ensure the POSTGRES_CONN_ID and API_CONN_ID match the Airflow connection IDs.
+
 # Deploy Your Project to Astronomer
 
 If you have an Astronomer account, pushing code to a Deployment on Astronomer is simple. For deploying instructions, refer to Astronomer documentation: https://www.astronomer.io/docs/astro/deploy-code/
-
